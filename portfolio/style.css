@@ -285,3 +285,25 @@ h1 {
 .portfolio__content {
   gap: 25px;
 }
+
+/* ---------------VIDEO-------------------- */
+
+.video__heading {
+  width: 154px;
+}
+
+.video-player {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 705px;
+}
+
+.button__play {
+  position: absolute;
+  z-index: 2;
+  height: 130px;
+  background-color: transparent;
+  cursor: pointer;
+}
