@@ -49,8 +49,6 @@ html {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
-  overflow: hidden;
-  /* border: 1px solid #fff; */
 }
 
 body {
@@ -81,7 +79,6 @@ body {
   z-index: 50;
   width: 100%;
   min-height: 90px;
-  /* border: 1px dotted #fff; */
 }
 
 .header__container {
@@ -109,18 +106,22 @@ body {
 .header__menu-lang {
   line-height: 2.5;
 }
+
 .header__menu {
   display: inline-flex;
 }
-.menu__list {
+
+/* .menu__list {
   display: flex;
-}
+} */
+
 .menu__item {
-  margin-left: 30px;
+  display: inline-block;
+  margin-left: 25px;
 }
 
 .menu__item:last-child {
-  margin-right: 27px;
+  margin-right: 26px;
 }
 
 .menu__link {
@@ -133,8 +134,11 @@ body {
   color: var(--color-gold);
   transition: color 0.5s;
 }
+
 .header__lang {
   display: inline-flex;
+  width: 70px;
+  justify-content: space-between;
   font-weight: bold;
 }
 
@@ -145,9 +149,9 @@ body {
   color: var(--color-gold);
 }
 
-.header__lang-slash {
+/* .header__lang-slash {
   margin: 0 8px 0 9px;
-}
+} */
 
 /* --------------HERO----------------- */
 .hero {
@@ -341,13 +345,14 @@ h1 {
 
 .price__card {
   width: 450px;
+  height: 505px;
   padding: 43px;
   border: 2px solid var(--color-gold);
   line-height: 200%;
   text-align: center;
 }
 
-.price__card > :nth-child(-n + 3) {
+.price__card > :nth-child(-n + 2) {
   margin-bottom: 20px;
 }
 
@@ -355,12 +360,14 @@ h1 {
   font-family: Merriweather, serif;
   font-weight: bold;
   font-size: 28px;
+  line-height: 200%;
 }
 
 .price__paycheck {
   font-family: Merriweather, serif;
   font-weight: bold;
   font-size: 24px;
+  line-height: 200%;
   color: var(--color-gold);
 }
 
@@ -368,6 +375,7 @@ h1 {
   margin-bottom: 40px;
   font-size: 18px;
   font-weight: 400;
+  line-height: 200%;
 }
 
 /* ------------------CONTACT----------------- */
@@ -411,10 +419,12 @@ h1 {
 }
 
 .contact__input {
+  height: 50px;
   padding-left: 20px;
   font-family: inherit;
   font-size: inherit;
   line-height: 200%;
+  color: var(--color-gold);
   background: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--color-gold);
   transition: 180ms box-shadow ease-in-out;
@@ -428,14 +438,11 @@ h1 {
 }
 
 .contact__field textarea {
+  height: 100px;
   resize: none;
 }
 
 ::placeholder {
-  color: var(--color-gold);
-}
-
-.contact__input {
   color: var(--color-gold);
 }
 
@@ -461,6 +468,7 @@ h1 {
 .footer__item * {
   display: inline-block;
   color: inherit;
+  line-height: 250%;
   transition: color 0.5s;
 }
 
@@ -469,18 +477,28 @@ h1 {
   transition: color 0.5s;
 }
 
-.footer__copyright *:not(:last-child) {
-  margin-right: 20px;
+.footer__copyright > *:not(:last-child) {
+  margin-right: 17px;
 }
 
 .sm-list {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 188px;
+  padding: 9px 0;
 }
 
-.sm-item:not(:last-child) {
-  margin-right: 20px;
+.sm-item {
+  width: 32px;
+  height: 32px;
   transition: filter 0.5s;
+}
+
+.sm-item a img {
+  position: relative;
+  display: block;
+  margin: auto;
 }
 
 .sm-item:hover {
