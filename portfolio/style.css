@@ -93,10 +93,17 @@ body {
 .header__logo {
   width: 50px;
   height: 50px;
+  transition: filter 0.5s;
 }
 
 .header__logo img {
   height: 100%;
+}
+
+.header__logo:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+  transition: filter 0.5s;
 }
 
 .header__menu-lang {
@@ -176,8 +183,13 @@ h1 {
   height: 55px;
   font-family: inherit;
   font-size: inherit;
-  line-height: 200%;
   cursor: pointer;
+  transition: color 0.3s ease-in;
+}
+
+.button:hover {
+  color: #fff;
+  transition: color 0.3s ease-out;
 }
 
 .button-filled {
@@ -306,6 +318,16 @@ h1 {
   height: 130px;
   background-color: transparent;
   cursor: pointer;
+}
+
+.button__play img {
+  transition: filter 0.5s ease-in;
+}
+
+.button__play img:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+  transition: filter 0.5s ease-out;
 }
 
 /* ----------------PRICE---------------------- */
@@ -439,6 +461,12 @@ h1 {
 .footer__item * {
   display: inline-block;
   color: inherit;
+  transition: color 0.5s;
+}
+
+.footer__item a:hover {
+  color: var(--color-gold);
+  transition: color 0.5s;
 }
 
 .footer__copyright *:not(:last-child) {
@@ -452,4 +480,11 @@ h1 {
 
 .sm-item:not(:last-child) {
   margin-right: 20px;
+  transition: filter 0.5s;
+}
+
+.sm-item:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+  transition: filter 0.5s;
 }
