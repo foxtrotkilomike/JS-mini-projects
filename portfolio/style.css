@@ -499,6 +499,8 @@ h1 {
   position: relative;
   display: block;
   margin: auto;
+  width: 32px;
+  height: 32px;
 }
 
 .sm-item:hover {
