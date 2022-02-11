@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./assets/svg/play-icon.png" type="image/x-icon">
   <title>Music Player</title>
 </head>
 
@@ -42,6 +43,10 @@
               <div class="duration duration-current">0:00</div>
               <div class="duration duration-full"></div>
             </div>
+            <button class="button button-volume">
+              <img src="./assets/svg/volume-small.png" class="volume-img" alt="volume button">
+            </button>
+            <input type="range" value="0.3" min="0" max="1" step="0.01" class="volume">
           </div>
         </div>
       </article>

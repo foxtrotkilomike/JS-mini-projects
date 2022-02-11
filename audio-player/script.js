@@ -7,13 +7,19 @@ const songTitle = document.querySelector(".track-title");
 const playBtn = document.querySelector(".button-play");
 const forwardBtn = document.querySelector(".button-forward");
 const backwardBtn = document.querySelector(".button-back");
+const buttonVolume = document.querySelector(".button-volume");
+
 const playImage = document.querySelector(".play-img");
+const volumeImage = document.querySelector(".volume-img");
 const progressBar = document.querySelector(".progress");
+const volumeBar = document.querySelector(".volume");
 const durationCurrent = document.querySelector(".duration-current");
 const durationFull = document.querySelector(".duration-full");
 
 let audioIndex = 0;
 let isPlay = false;
+let volumeUp = true;
+let lastVolumeValue = 0.3;
 let time, timeSec, timeMin;
 
 const audioList = [
@@ -46,6 +52,8 @@ loadAudio = (audioIndex) => {
   progressBar.value = 0;
   songAudio.src = `./assets/audio/${audioList[audioIndex].trackName}`;
   songAudio.load();
+  songAudio.volume = lastVolumeValue;
+  volumeBar.value = songAudio.volume;
   songArtist.textContent = audioList[audioIndex].artist;
   songTitle.textContent = audioList[audioIndex].title;
   songCover.style.backgroundImage = `url(./assets/img/${audioList[audioIndex].cover})`;
@@ -84,7 +92,22 @@ setProgressBar = () => {
   songAudio.currentTime = (progressBar.value / 100) * songAudio.duration;
 };
 
+setVolumeBar = () => {
+  songAudio.volume = volumeBar.value;
+  lastVolumeValue = volumeBar.value;
+  volumeUp = true;
+  if (volumeBar.value > 0.5) {
+    volumeImage.src = './assets/svg/volume-big.png';
+  } else if (volumeBar.value > 0) {
+    volumeImage.src = './assets/svg/volume-small.png';
+  } else {
+    volumeUp = false;
+    volumeImage.src = './assets/svg/volume-mute.png';
+  }
+}
+
 progressBar.addEventListener("click", setProgressBar);
+volumeBar.addEventListener("click", setVolumeBar);
 
 playNext = () => {
   audioIndex++;
@@ -112,3 +135,21 @@ playPrev = () => {
 
 forwardBtn.addEventListener("click", playNext);
 backwardBtn.addEventListener("click", playPrev);
+songAudio.addEventListener("ended", playNext);
+
+muteAudio = () => {
+  if (volumeUp) {
+    volumeUp = false;
+    lastVolumeValue = songAudio.volume;
+    songAudio.volume = 0;
+    volumeBar.value = 0;
+    volumeImage.src = './assets/svg/volume-mute.png';
+  } else {
+    volumeUp = true;
+    songAudio.volume = lastVolumeValue;
+    volumeBar.value = lastVolumeValue;
+    volumeImage.src = './assets/svg/volume-small.png';
+  }
+}
+
+buttonVolume.addEventListener("click", muteAudio)
