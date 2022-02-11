@@ -37,6 +37,15 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  background-image: linear-gradient(
+    0deg,
+    rgba(139, 34, 195, 0.9) 0%,
+    rgba(253, 174, 45, 0.85) 100%
+  );
+}
+
+header {
+  background-color: #ffffff52;
 }
 
 .wrapper {
@@ -96,8 +105,13 @@ body {
   height: 40%;
   width: 100%;
   padding: 6px 18px;
-  border: 2px solid rgb(160, 160, 160);
+  border: 1px solid rgb(160, 160, 160);
   border-radius: 20px;
+  /* background-color: rgba(253, 174, 45, 0.85); */
+}
+
+.search-input:focus {
+  box-shadow: 0 5px 20px #000;
 }
 
 main {
