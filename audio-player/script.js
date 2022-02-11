@@ -1,13 +1,18 @@
-const playButton = document.querySelector(".button-play");
-const playImage = document.querySelector(".play-img");
 const songAudio = document.querySelector("audio");
+const backgroundContainer = document.querySelector(".background");
+const songCover = document.querySelector(".player-cover");
+const songArtist = document.querySelector(".track-artist");
+const songTitle = document.querySelector(".track-title");
+
+const playBtn = document.querySelector(".button-play");
+const playImage = document.querySelector(".play-img");
 const progressBar = document.querySelector(".progress");
 const durationCurrent = document.querySelector(".duration-current");
 const durationFull = document.querySelector(".duration-full");
 
-let audioIndex = 0;
+let audioIndex = 1;
 let isPlay = false;
-let time, timeSec, timeMin, songAudio, songTitle, songArtist, songCover;
+let time, timeSec, timeMin;
 
 const audioList = [
   {
@@ -24,27 +29,37 @@ const audioList = [
   }
 ];
 
-loadAudio = (audioIndex) => {
-  progressBar.value = 0;
-  songAudio.src = `./assets/audio/${audioList[audioIndex].trackName}`;
-  songArtist = audioList[audioIndex].artist;
-  songTitle = audioList[audioIndex].title;
-  songCover = audioList[audioIndex].cover;
-}
-
-loadAudio(0);
-
-updateRange = () => {
-  progressBar.value = (songAudio.currentTime / songAudio.duration) * 100;
-  time = Math.floor(songAudio.currentTime);
+timeFormat = (time) => {
   timeSec = time % 60;
   timeMin = Math.floor(time / 60);
 
   if (timeSec < 10) {
-    durationCurrent.textContent = `${timeMin}:0${timeSec}`;
-  } else {
-    durationCurrent.textContent = `${timeMin}:${timeSec}`;
-  }
+    return `${timeMin}:0${timeSec}`;
+  } 
+  
+  return `${timeMin}:${timeSec}`;
+}
+
+loadAudio = (audioIndex) => {
+  progressBar.value = 0;
+  songAudio.src = `./assets/audio/${audioList[audioIndex].trackName}`;
+  songAudio.load();
+  songArtist.textContent = audioList[audioIndex].artist;
+  songTitle.textContent = audioList[audioIndex].title;
+  songCover.style.backgroundImage = `url(./assets/img/${audioList[audioIndex].cover})`;
+
+  backgroundContainer.style.backgroundImage = `url(./assets/img/${audioList[audioIndex].cover})`;
+}
+
+loadAudio(0);
+songAudio.addEventListener("loadeddata", () => {
+  durationFull.textContent = timeFormat(Math.round(songAudio.duration));
+});
+
+updateRange = () => {
+  progressBar.value = (songAudio.currentTime / songAudio.duration) * 100;
+  time = Math.floor(songAudio.currentTime);
+  durationCurrent.textContent = timeFormat(time);
 };
 
 setInterval(updateRange, 500);
@@ -61,7 +76,7 @@ playAudio = () => {
   }
 };
 
-playButton.addEventListener("click", playAudio);
+playBtn.addEventListener("click", playAudio);
 
 setProgressBar = () => {
   songAudio.currentTime = (progressBar.value / 100) * songAudio.duration;
