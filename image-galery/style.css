@@ -33,7 +33,81 @@ html {
   font-size: 16px;
   color: #000;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 .wrapper {
-  min-height: 100%;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+  /* overflow: hidden; */
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100px;
+  margin-left: -80px;
+  padding: 15px 0;
+  font-size: 36px;
+}
+
+.logo {
+  height: 100%;
+}
+
+.logo img {
+  height: 100%;
+}
+
+.title {
+  font-family: "Dancing Script", cursive;
+}
+
+.unsplash {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  text-align: center;
+  border: 3px solid rgb(160, 160, 160);
+  border-radius: 8px;
+}
+
+.unsplash img {
+  width: 30px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  width: 35%;
+}
+
+.search-input {
+  height: 40%;
+  width: 100%;
+  padding: 6px 18px;
+  border: 2px solid rgb(160, 160, 160);
+  border-radius: 20px;
+}
+
+main {
+  flex: 1 1 auto;
+  width: 70%;
+  margin: 0 auto;
+}
+
+footer {
+  width: 70%;
+  height: 50px;
+  margin: 0 auto;
 }
