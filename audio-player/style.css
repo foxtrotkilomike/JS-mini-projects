@@ -116,10 +116,10 @@ html {
 }
 
 .track-caption {
-  flex-grow: 0.6;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 230px;
   padding: 5px;
   font-size: 20px;
 }

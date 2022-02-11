@@ -5,12 +5,14 @@ const songArtist = document.querySelector(".track-artist");
 const songTitle = document.querySelector(".track-title");
 
 const playBtn = document.querySelector(".button-play");
+const forwardBtn = document.querySelector(".button-forward");
+const backwardBtn = document.querySelector(".button-back");
 const playImage = document.querySelector(".play-img");
 const progressBar = document.querySelector(".progress");
 const durationCurrent = document.querySelector(".duration-current");
 const durationFull = document.querySelector(".duration-full");
 
-let audioIndex = 1;
+let audioIndex = 0;
 let isPlay = false;
 let time, timeSec, timeMin;
 
@@ -51,7 +53,7 @@ loadAudio = (audioIndex) => {
   backgroundContainer.style.backgroundImage = `url(./assets/img/${audioList[audioIndex].cover})`;
 }
 
-loadAudio(0);
+loadAudio(audioIndex);
 songAudio.addEventListener("loadeddata", () => {
   durationFull.textContent = timeFormat(Math.round(songAudio.duration));
 });
@@ -83,3 +85,30 @@ setProgressBar = () => {
 };
 
 progressBar.addEventListener("click", setProgressBar);
+
+playNext = () => {
+  audioIndex++;
+  if (audioIndex >= audioList.length)
+    audioIndex = 0;
+  loadAudio(audioIndex);
+
+  if (isPlay) {
+    isPlay = false;
+    playAudio();
+  }
+}
+
+playPrev = () => {
+  audioIndex--;
+  if (audioIndex < 0)
+    audioIndex = audioList.length - 1;
+  loadAudio(audioIndex);
+  
+  if (isPlay) {
+    isPlay = false;
+    playAudio();
+  }
+}
+
+forwardBtn.addEventListener("click", playNext);
+backwardBtn.addEventListener("click", playPrev);
