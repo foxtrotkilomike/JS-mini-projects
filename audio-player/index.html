@@ -19,8 +19,9 @@
         <div class="player-cover"></div>
         <div class="player-self">
           <div class="player-controls">
+            <audio src="./assets/audio/beyonce.mp3"></audio>
             <button class="button button-play">
-              <img src="./assets/svg/play.png" alt="play button">
+              <img src="./assets/svg/play.png" class="play-img" alt="play button">
             </button>
             <div class="track-caption">
               <p class="track-artist">Beyonce</p>
@@ -28,17 +29,19 @@
             </div>
             <div class="back-forward-buttons">
               <button class="button button-back">
-                <img src="./assets/svg/backward.png" alt="backward button">
+                <img src="./assets/svg/backward.png" class="backward-img" alt="backward button">
               </button>
               <button class="button button-forward">
-                <img src="./assets/svg/forward.png" alt="forward button">
+                <img src="./assets/svg/forward.png" class="forward-img" alt="forward button">
               </button>
             </div>
           </div>
           <div class="player-bar">
-            <div class="duration-full">111</div>
-            <input type="range" value="0" min="0" max="100" step="1" class="progress">
-            <div class="duration-current">111</div>
+            <input type="range" value="0" min="0" max="100" step="0.1" class="progress">
+            <div class="time-container">
+              <div class="duration duration-current">0:00</div>
+              <div class="duration duration-full"></div>
+            </div>
           </div>
         </div>
       </article>
@@ -48,7 +51,7 @@
 
     </footer>
   </div>
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>
