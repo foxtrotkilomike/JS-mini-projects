@@ -52,8 +52,14 @@ loadAudio = (audioIndex) => {
   progressBar.value = 0;
   songAudio.src = `./assets/audio/${audioList[audioIndex].trackName}`;
   songAudio.load();
-  songAudio.volume = lastVolumeValue;
-  volumeBar.value = songAudio.volume;
+  if (!volumeUp) {
+    songAudio.volume = 0;
+    volumeBar.value = 0;
+  } else {
+    songAudio.volume = lastVolumeValue;
+    volumeBar.value = songAudio.volume;
+  }
+  
   songArtist.textContent = audioList[audioIndex].artist;
   songTitle.textContent = audioList[audioIndex].title;
   songCover.style.backgroundImage = `url(./assets/img/${audioList[audioIndex].cover})`;
