@@ -5,6 +5,7 @@
   margin: 0;
   border: 0;
   box-sizing: border-box;
+  outline: none;
 }
 a {
   text-decoration: none;
@@ -30,6 +31,7 @@ body,
 html {
   height: 100%;
   line-height: 1;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #000;
 }
@@ -53,7 +55,6 @@ header {
   justify-content: space-between;
   width: 70%;
   margin: 0 auto;
-  /* overflow: hidden; */
 }
 
 .logo-title {
@@ -107,11 +108,11 @@ header {
   padding: 6px 18px;
   border: 1px solid rgb(160, 160, 160);
   border-radius: 20px;
-  /* background-color: rgba(253, 174, 45, 0.85); */
+  transition: box-shadow 0.3s ease-in;
 }
 
 .search-input:focus {
-  box-shadow: 0 5px 20px #000;
+  box-shadow: 0 5px 20px rgb(131, 131, 131);
 }
 
 main {
@@ -121,7 +122,32 @@ main {
 }
 
 footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 70%;
-  height: 50px;
+  height: 8vh;
   margin: 0 auto;
+}
+
+.gh-logo {
+  width: 50px;
+}
+
+.rsschool-logo {
+  width: 100px;
+}
+
+.footer-credits {
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.footer-credits a {
+  font-size: 14px;
+  color: #ffcb70;
+}
+
+.small-text {
+  font-size: 14px;
 }
