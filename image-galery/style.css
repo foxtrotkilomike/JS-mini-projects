@@ -53,6 +53,7 @@ header {
 .wrapper {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   width: 70%;
   margin: 0 auto;
 }
@@ -67,39 +68,98 @@ header {
   font-size: 36px;
 }
 
+@media (max-width: 970px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  .logo-title {
+    margin-left: 0;
+  }
+}
+
 .logo {
+  position: relative;
+  width: 70px;
   height: 100%;
 }
 
 .logo img {
+  position: absolute;
+
   height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .title {
   font-family: "Dancing Script", cursive;
 }
 
+@media (max-width: 730px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .logo {
+    width: 42px;
+  }
+
+  .logo img {
+    height: 60%;
+  }
+}
+
 .unsplash {
-  display: flex;
-  align-items: center;
-  gap: 5px;
   margin-top: 5px;
   padding: 10px;
   font-family: Arial, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
-  border: 3px solid rgb(160, 160, 160);
+  background-color: #eaeaea;
+  border-right: 5px solid rgb(160, 160, 160);
+  border-bottom: 5px solid rgb(160, 160, 160);
   border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s linear, border 0.2s linear;
+}
+
+@media (max-width: 730px) {
+  .unsplash {
+    font-size: 16px;
+  }
+}
+
+.unsplash a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .unsplash img {
   width: 30px;
 }
 
+.unsplash-title {
+  display: inline-block;
+  color: #000;
+}
+
+.unsplash:hover {
+  transform: translateY(6px);
+  border: 0;
+}
+
 .search {
   display: flex;
   align-items: center;
   width: 35%;
+}
+
+@media (max-width: 970px) {
+  .search {
+    width: 25%;
+  }
 }
 
 .search-input {
@@ -119,6 +179,12 @@ main {
   flex: 1 1 auto;
   width: 70%;
   margin: 0 auto;
+}
+
+@media (max-width: 970px) {
+  main {
+    width: 95%;
+  }
 }
 
 footer {
