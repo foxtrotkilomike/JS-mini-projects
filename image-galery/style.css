@@ -151,6 +151,7 @@ header {
 }
 
 .search {
+  position: relative;
   display: flex;
   align-items: center;
   width: 35%;
@@ -173,6 +174,23 @@ header {
 
 .search-input:focus {
   box-shadow: 0 5px 20px rgb(131, 131, 131);
+}
+
+.search-button {
+  position: absolute;
+  height: 15px;
+  right: 5%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+svg {
+  width: 15px;
+  transition: fill 0.3s ease-in-out;
+}
+
+svg:hover {
+  fill: #ffcb70;
 }
 
 main {
