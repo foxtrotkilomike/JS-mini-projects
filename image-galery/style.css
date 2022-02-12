@@ -36,9 +36,10 @@ html {
   color: #000;
 }
 
-body {
+.container {
   display: flex;
   flex-direction: column;
+  min-height: 100%;
   background-image: linear-gradient(
     0deg,
     rgba(139, 34, 195, 0.9) 0%,
@@ -152,6 +153,7 @@ header {
 
 .search {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   width: 35%;
 }
@@ -216,12 +218,29 @@ main {
   flex: 1 1 auto;
   width: 70%;
   margin: 0 auto;
+  padding: 10px 0;
+  /* overflow: hidden; */
 }
 
 @media (max-width: 970px) {
   main {
     width: 95%;
   }
+}
+
+.img-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.img-item {
+  width: 32%;
+}
+
+.img-item img {
+  width: 100%;
 }
 
 footer {
