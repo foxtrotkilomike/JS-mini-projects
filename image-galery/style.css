@@ -228,19 +228,25 @@ main {
   }
 }
 
-.img-container {
+.main-container {
   display: flex;
   justify-content: space-between;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  flex-wrap: wrap;
+  width: 32%;
 }
 
 .img-item {
-  width: 32%;
+  width: 100%;
 }
 
 .img-item img {
   width: 100%;
+  border-radius: 4px;
 }
 
 footer {
