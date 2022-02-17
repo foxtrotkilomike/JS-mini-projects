@@ -26,14 +26,56 @@ h6 {
   font-weight: inherit;
   font-size: inherit;
 }
+
 body,
 html {
   height: 100%;
   line-height: 1;
+  font-family: "Nunito", sans-serif;
   font-size: 16px;
-  color: #000;
+  color: #ff9696;
 }
+
+body {
+  background-color: #fdf0e4;
+}
+
 .wrapper {
-  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 92vh;
   overflow: hidden;
+}
+
+canvas {
+  border: 1px solid #fcd6d7;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  height: 8vh;
+  margin: 0 auto;
+}
+
+@media (max-width: 970px) {
+  footer {
+    width: 95%;
+  }
+}
+
+.gh-logo {
+  width: 50px;
+  filter: invert(64%) sepia(16%) saturate(1067%) hue-rotate(314deg)
+    brightness(102%) contrast(108%);
+}
+
+.rsschool-logo {
+  width: 100px;
+  filter: invert(64%) sepia(16%) saturate(1067%) hue-rotate(314deg)
+    brightness(102%) contrast(108%);
 }
