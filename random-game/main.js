@@ -1,11 +1,17 @@
 const body = document.querySelector('body');
 const wrapper = document.querySelector('.wrapper');
+const rules = document.querySelector('.rules');
+const rulesBtn = document.querySelector('.rules-button');
 const startBtn = document.querySelector('.start-button');
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 let WIDTH, HEIGHT;
 let isPlay = false;
+
+window.onload = () => {
+  rules.style.opacity = '1';
+};
 
 if (wrapper.offsetWidth < 1000) {
   WIDTH = wrapper.offsetWidth / 1.2;
@@ -91,6 +97,14 @@ function update() {
 }
 
 update();
+
+
+rulesBtn.addEventListener('click', () => {
+  rules.style.opacity = '0';
+  setTimeout(() => {
+    rules.style.visibility = 'hidden';
+  }, 500);
+})
 
 startBtn.addEventListener('click', () => {
   startBtn.style.visibility = 'hidden';
