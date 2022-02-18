@@ -44,7 +44,11 @@ let sprite = {
   y: HEIGHT / 2,
 
   boostUp() {
-    this.y -= HEIGHT / 6;
+    if (this.y - HEIGHT / 6 < HEIGHT / 6) {
+      this.y = 0;
+    } else {
+      this.y -= HEIGHT / 6;
+    }
   }
 }
 
