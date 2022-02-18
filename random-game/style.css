@@ -38,6 +38,11 @@ html {
 
 body {
   background-color: #fdf0e4;
+  transition: background-color 0.4s ease-out;
+}
+
+.game-started-body {
+  background-color: #847c75;
 }
 
 .wrapper {
@@ -50,7 +55,28 @@ body {
 }
 
 canvas {
-  border: 1px solid #fcd6d7;
+  position: relative;
+  transition: box-shadow 0.4s ease-out;
+}
+
+.game-started-canvas {
+  box-shadow: 0 0 100px #000;
+}
+
+.start-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25%;
+  height: 10%;
+  background-color: black;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #000;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 36px;
+  cursor: pointer;
 }
 
 footer {
