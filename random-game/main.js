@@ -244,6 +244,5 @@ document.addEventListener('keydown', (event) => {
 })
 
 canvas.addEventListener('touchstart', () => {
-  console.log('touch')
   if (isPlay) sprite.boostUp();
 });

@@ -27,17 +27,22 @@ h6 {
   font-size: inherit;
 }
 
+:root {
+  --biege-color: #fdf0e4;
+  --pink-color: #ff9696;
+}
+
 body,
 html {
   height: 100%;
   line-height: 1;
   font-family: "Nunito", sans-serif;
   font-size: 16px;
-  color: #ff9696;
+  color: var(--pink-color);
 }
 
 body {
-  background-color: #fdf0e4;
+  background-color: var(--biege-color);
   transition: background-color 0.4s ease-out;
 }
 
@@ -52,14 +57,24 @@ body {
   background-color: #847c75;
 }
 
+.game-started-body tbody tr:nth-child(odd) {
+  background-color: #847c75;
+}
+
 .wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  gap: 20px;
   height: 92vh;
-  overflow: hidden;
+}
+
+@media (max-height: 1160px) {
+  .wrapper {
+    padding-top: 50px;
+  }
 }
 
 .rules {
@@ -69,14 +84,15 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  top: 15%;
   width: 45%;
   height: 40%;
   padding: 10px;
   font-size: 36px;
   text-align: center;
   line-height: 150%;
-  background-color: #fdf0e4;
-  border: 5px solid #ff9696;
+  background-color: var(--biege-color);
+  border: 5px solid var(--pink-color);
   border-radius: 20px;
   opacity: 0;
   transition: opacity 0.5s ease-out;
@@ -90,7 +106,7 @@ code {
 
 .rules-button {
   font-size: 30px;
-  box-shadow: 0 0 25px #ff9696;
+  box-shadow: 0 0 25px var(--pink-color);
 }
 
 @media (min-width: 1600px) {
@@ -190,7 +206,63 @@ code {
   }
 }
 
+.scoreboard {
+  width: 400px;
+  padding-bottom: 5px;
+  border: 3px solid var(--pink-color);
+  border-radius: 10px;
+  overflow-y: scroll;
+  transition: background-color 0.4s ease-out;
+}
+
+@media (max-width: 500px) {
+  .scoreboard {
+    width: 90%;
+  }
+}
+
+#scoretable {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 10px 10px;
+}
+
+tr {
+  padding: 5px 10px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ebddd0;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pink-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink-color);
+}
+
 footer {
+  width: 100%;
+}
+
+.footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -200,7 +272,7 @@ footer {
 }
 
 @media (max-width: 970px) {
-  footer {
+  .footer-container {
     width: 95%;
   }
 }
