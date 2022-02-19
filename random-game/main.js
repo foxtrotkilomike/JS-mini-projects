@@ -2,7 +2,7 @@ const body = document.querySelector('body');
 const wrapper = document.querySelector('.wrapper');
 const rules = document.querySelector('.rules');
 const rulesBtn = document.querySelector('.rules-button');
-const startBtn = document.querySelector('.start-button');
+const playBtn = document.querySelector('.play-button');
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -65,7 +65,7 @@ const obstaclesImg = [
 
 let sprite = {
   x: WIDTH * 0.2,
-  y: HEIGHT / 2,
+  y: HEIGHT / 3,
 
   boostUp() {
     // smooth movements
@@ -102,6 +102,7 @@ function gameOver() {
   setTimeout(() => {
     body.classList.remove('game-started-body');
     canvas.classList.remove('game-started-canvas');
+    playBtn.style.visibility = 'visible';
   }, 1000);
 
 }
@@ -109,12 +110,11 @@ function gameOver() {
 function render() {
 
   ctx.drawImage(backgroundImg, bg.x, bg.y);
-  ctx.drawImage(spriteImg, sprite.x, sprite.y);
-  
   obstacles.forEach(obstacle =>
     ctx.drawImage(obstacle.img, obstacle.x, obstacle.y));
     
   ctx.drawImage(foregroundImg, fg.x, fg.y);
+  ctx.drawImage(spriteImg, sprite.x, sprite.y);
 
   window.requestAnimationFrame(update);
 }
@@ -153,28 +153,60 @@ function update() {
     }
   }
 
-    render();
+  render();
 }
 
 update();
 
+function startCountDown() {
+  let counterSeconds = 4;
+  const counter = document.createElement('div');
+  counter.classList.add('count-down');
+  wrapper.append(counter);
+  countDownID = setInterval(() => {
+    counterSeconds--;
+    counterSeconds < 0 ? clearInterval(countDownID) : null;
+    counter.textContent = `${counterSeconds}`
+  }, 1000)
+
+  setTimeout(() => counter.remove(), 1000 * counterSeconds);
+}
+
+function startGame() {
+  sprite.x = WIDTH * 0.2;
+  sprite.y = HEIGHT / 3;
+  obstacles = [];
+  
+  startCountDown();
+
+  setTimeout(() => {
+    body.classList.add('game-started-body');
+    canvas.classList.add('game-started-canvas');
+    isPlay = true;
+    
+    update();
+  }, 4000);
+}
 
 rulesBtn.addEventListener('click', () => {
   rules.style.opacity = '0';
   setTimeout(() => {
-    rules.style.visibility = 'hidden';
+    rules.style.visibility = 'hidden';  
   }, 500);
+
+  startGame();
 })
 
-startBtn.addEventListener('click', () => {
-  startBtn.style.visibility = 'hidden';
-  body.classList.add('game-started-body');
-  canvas.classList.add('game-started-canvas');
-  isPlay = true;
-  
-  update();
+playBtn.addEventListener('click', () => {
+  playBtn.style.visibility = 'hidden';
+  startGame();
 })
 
-canvas.addEventListener('click', () => {
+document.addEventListener('keydown', (event) => {
+  if (isPlay && event.code === 'ArrowUp') sprite.boostUp();
+})
+
+canvas.addEventListener('touchstart', () => {
+  console.log('touch')
   if (isPlay) sprite.boostUp();
-})
+});
