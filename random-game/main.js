@@ -3,6 +3,7 @@ const wrapper = document.querySelector('.wrapper');
 const rules = document.querySelector('.rules');
 const rulesBtn = document.querySelector('.rules-button');
 const playBtn = document.querySelector('.play-button');
+const scoreBox = document.querySelector('.score')
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -11,7 +12,7 @@ const gapHeight = 230;
 
 let WIDTH, HEIGHT;
 let isPlay = false;
-let countDown = 0, upCount = 0;
+let countDown = 0, upCount = 0, score = 0;
 let obstacles = [];
 let obsRandomY;
 let randomImgIndex;
@@ -83,6 +84,7 @@ let sprite = {
 function Obstacle(x, y, imgSrc) {
   this.x = x;
   this.y = y;
+  this.wasFlown = false;
   this.img = new Image();
   this.img.src = imgSrc;
 }
@@ -99,6 +101,8 @@ let bg = {
 
 function gameOver() {
   isPlay = false;
+  // otherwise animation will become faster each try
+  window.cancelAnimationFrame(stop);
   setTimeout(() => {
     body.classList.remove('game-started-body');
     canvas.classList.remove('game-started-canvas');
@@ -107,16 +111,40 @@ function gameOver() {
 
 }
 
+function isCollision() {
+  if (obstacles[0].wasFlown)
+    return false
+
+  if (sprite.y >= HEIGHT - spriteImg.height - foregroundImg.height)
+    return true
+
+  if (sprite.x + spriteImg.width > obstacles[0].x &&
+      (sprite.y < obstacles[0].y + obsImgHeight || 
+       sprite.y + spriteImg.height > obstacles[1].y)) 
+    return true
+
+  return false
+}
+
+function scoreUpdate() {
+  if (!obstacles[0].wasFlown && obstacles[0].x < sprite.x) {
+    obstacles[0].wasFlown = true;
+    obstacles[1].wasFlown = true;
+    score += 10;
+    scoreBox.textContent = score;
+  }
+}
+
 function render() {
 
   ctx.drawImage(backgroundImg, bg.x, bg.y);
+  ctx.drawImage(spriteImg, sprite.x, sprite.y);
   obstacles.forEach(obstacle =>
     ctx.drawImage(obstacle.img, obstacle.x, obstacle.y));
     
   ctx.drawImage(foregroundImg, fg.x, fg.y);
-  ctx.drawImage(spriteImg, sprite.x, sprite.y);
 
-  window.requestAnimationFrame(update);
+  stop = window.requestAnimationFrame(update);
 }
 
 function update() {
@@ -131,12 +159,16 @@ function update() {
     // sprite is falling down
     sprite.y += 0.7;
 
-    if (sprite.y >= HEIGHT - spriteImg.height - foregroundImg.height) {
-      gameOver();
-    }
+    if (obstacles.length) {
+      if (isCollision()) {
+        gameOver();
+      }
 
-    obstacles.forEach(obstacle => obstacle.x--);
-    if (obstacles.length && obstacles[0].x < -100) obstacles.splice(0, 1);
+      obstacles.forEach(obstacle => obstacle.x--);
+      if (obstacles[0].x < -100) obstacles.splice(0, 1);
+
+      scoreUpdate();
+    }
 
     countDown--;
     if (countDown < 0) {
@@ -159,10 +191,11 @@ function update() {
 update();
 
 function startCountDown() {
-  let counterSeconds = 4;
+  let counterSeconds = 3;
   const counter = document.createElement('div');
   counter.classList.add('count-down');
   wrapper.append(counter);
+  counter.textContent = `${counterSeconds}`
   countDownID = setInterval(() => {
     counterSeconds--;
     counterSeconds < 0 ? clearInterval(countDownID) : null;
@@ -176,7 +209,11 @@ function startGame() {
   sprite.x = WIDTH * 0.2;
   sprite.y = HEIGHT / 3;
   obstacles = [];
-  
+  fg.x = 0;
+  fg.y = HEIGHT - foregroundImg.height;
+  score = 0;
+  scoreBox.textContent = '0';
+
   startCountDown();
 
   setTimeout(() => {
@@ -185,7 +222,7 @@ function startGame() {
     isPlay = true;
     
     update();
-  }, 4000);
+  }, 3000);
 }
 
 rulesBtn.addEventListener('click', () => {
