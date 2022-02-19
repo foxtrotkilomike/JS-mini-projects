@@ -93,6 +93,12 @@ code {
   box-shadow: 0 0 25px #ff9696;
 }
 
+@media (min-width: 1600px) {
+  .rules {
+    width: 750px;
+  }
+}
+
 @media (max-width: 1255px) {
   .rules > * {
     font-size: 28px;
@@ -117,6 +123,20 @@ code {
   }
 }
 
+@media (max-height: 1100px) {
+  .rules {
+    height: 60%;
+  }
+
+  .rules > * {
+    line-height: 130%;
+  }
+
+  .rules-button {
+    height: 15%;
+  }
+}
+
 canvas {
   position: relative;
   transition: box-shadow 0.4s ease-out;
@@ -136,6 +156,12 @@ canvas {
   box-shadow: 0 0 15px #000;
   font-family: "DotGothic16", sans-serif;
   font-size: 36px;
+}
+
+@media (min-width: 1600px) {
+  .start-button {
+    width: 400px;
+  }
 }
 
 footer {
