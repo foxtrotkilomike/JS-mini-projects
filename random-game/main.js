@@ -1,3 +1,31 @@
+const storage = window.localStorage;
+let scoreData = [];
+const tbody = document.querySelector('.tbody');
+const lastGamesCount = 10;
+
+function fillScoreTable(scoreData) {
+  tbody.innerHTML = '';
+  let tableContent = scoreData.map((score, index) => {
+    let td = [];
+    const tr = document.createElement('tr');
+    td[0] = document.createElement('td');
+    td[1] = document.createElement('td');
+    td[0].textContent = index + 1;
+    td[1].textContent = score;
+    tr.append(...td);
+    return tr;
+  });
+
+  tbody.append(...tableContent);
+}
+
+if (storage.getItem('score')) {
+  scoreData = storage.getItem('score').split(',');
+  scoreData = scoreData.map(score => parseInt(score));
+  fillScoreTable(scoreData);
+}
+  
+
 const body = document.querySelector('body');
 const wrapper = document.querySelector('.wrapper');
 const rules = document.querySelector('.rules');
@@ -8,7 +36,7 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 const obsImgHeight = 800;
-const gapHeight = 230;
+const gapHeight = 250;
 
 let WIDTH, HEIGHT;
 let isPlay = false;
@@ -99,6 +127,14 @@ let bg = {
   y: 0
 }
 
+function manageScore() {
+  if (scoreData.length === lastGamesCount) scoreData.pop();
+  scoreData.push(score);
+  scoreData.sort((a, b) => b - a);
+  storage.setItem('score', scoreData);
+  fillScoreTable(scoreData);
+}
+
 function gameOver() {
   isPlay = false;
   // otherwise animation will become faster each try
@@ -109,6 +145,7 @@ function gameOver() {
     playBtn.style.visibility = 'visible';
   }, 1000);
 
+  manageScore();
 }
 
 function isCollision() {
