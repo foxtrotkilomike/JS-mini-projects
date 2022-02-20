@@ -31,7 +31,10 @@ const wrapper = document.querySelector('.wrapper');
 const rules = document.querySelector('.rules');
 const rulesBtn = document.querySelector('.rules-button');
 const playBtn = document.querySelector('.play-button');
-const scoreBox = document.querySelector('.score')
+const scoreBox = document.querySelector('.score');
+const yourScore = document.querySelector('.score-box-last');
+const yourScoreCount = document.querySelector('.your-score');
+const canvasContainer = document.querySelector('.canvas-container');
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -143,6 +146,8 @@ function gameOver() {
     body.classList.remove('game-started-body');
     canvas.classList.remove('game-started-canvas');
     playBtn.style.visibility = 'visible';
+    yourScoreCount.textContent = score;
+    yourScore.style.visibility = 'visible';
   }, 1000);
 
   manageScore();
@@ -231,7 +236,7 @@ function startCountDown() {
   let counterSeconds = 3;
   const counter = document.createElement('div');
   counter.classList.add('count-down');
-  wrapper.append(counter);
+  canvasContainer.append(counter);
   counter.textContent = `${counterSeconds}`
   countDownID = setInterval(() => {
     counterSeconds--;
@@ -273,6 +278,7 @@ rulesBtn.addEventListener('click', () => {
 
 playBtn.addEventListener('click', () => {
   playBtn.style.visibility = 'hidden';
+  yourScore.style.visibility = 'hidden';
   startGame();
 })
 
