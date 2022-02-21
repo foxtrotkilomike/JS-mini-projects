@@ -27,6 +27,21 @@ h6 {
   font-size: inherit;
 }
 
+@keyframes title-boom {
+  from {
+    color: #fff;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  to {
+    color: red;
+    font-size: 400%;
+    font-weight: 900;
+    opacity: 0;
+    transform: translate(-60px, -20px);
+  }
+}
+
 :root {
   --biege-color: #fdf0e4;
   --pink-color: #ff9696;
@@ -163,6 +178,17 @@ code {
   font-size: 28px;
   background-color: #000;
   color: #fff;
+}
+
+.score {
+  display: inline-block;
+  position: absolute;
+  left: 95px;
+  top: 12px;
+}
+
+.animation {
+  animation: 0.8s ease-out title-boom;
 }
 
 .score-box-last {

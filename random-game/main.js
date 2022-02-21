@@ -32,6 +32,7 @@ const rules = document.querySelector('.rules');
 const rulesBtn = document.querySelector('.rules-button');
 const playBtn = document.querySelector('.play-button');
 const scoreBox = document.querySelector('.score');
+const scoreAnimated = document.querySelector('.score-animated')
 const yourScore = document.querySelector('.score-box-last');
 const yourScoreCount = document.querySelector('.your-score');
 const canvasContainer = document.querySelector('.canvas-container');
@@ -43,9 +44,11 @@ const gapHeight = 250;
 
 let WIDTH, HEIGHT;
 let isPlay = false;
-let countDown = 0, upCount = 0, score = 0;
-let obstacles = [];
-let obsRandomY;
+let upCount = 0, score = 0, obsCount = 0, techsCount = 0;
+let obsGenerateFeq = 600, techsGenerateFeq = 2400;
+const techsOffset = obsGenerateFeq / 2;
+let obstacles = [], techInstance = {};
+let obsRandomY, techsRandomY;
 let randomImgIndex;
 
 window.onload = () => {
@@ -94,6 +97,28 @@ const obstaclesImg = [
   './assets/text-10.png'
 ];
 
+const thechsImg = [
+  './assets/techs/angular.png',
+  './assets/techs/codepen.png',
+  './assets/techs/css.png',
+  './assets/techs/git.png',
+  './assets/techs/graphql.png',
+  './assets/techs/html.png',
+  './assets/techs/js.png',
+  './assets/techs/mysql.png',
+  './assets/techs/nginx.png',
+  './assets/techs/nodejs.png',
+  './assets/techs/npm.png',
+  './assets/techs/py.png',
+  './assets/techs/react.png',
+  './assets/techs/redux.png',
+  './assets/techs/sass.png',
+  './assets/techs/ts.png',
+  './assets/techs/vscode.png',
+  './assets/techs/vue.png',
+  './assets/techs/webpack.png'
+];
+
 
 let sprite = {
   x: WIDTH * 0.2,
@@ -105,7 +130,7 @@ let sprite = {
       this.y -= HEIGHT / 40;
       if (this.y < 0) this.y = 0;
       upCount++;
-      upCount == 5 ? clearInterval(moveUp) : null;
+      upCount >= 5 ? clearInterval(moveUp) : null;
     }, 8)
 
     upCount = 0;
@@ -117,6 +142,14 @@ function Obstacle(x, y, imgSrc) {
   this.y = y;
   this.wasFlown = false;
   this.img = new Image();
+  this.img.src = imgSrc;
+}
+
+function Thechnology(x, y, imgSrc) {
+  this.x = x;
+  this.y = y;
+  this.wasHit = false;
+  this.img = new Image(100, 100);
   this.img.src = imgSrc;
 }
 
@@ -168,12 +201,25 @@ function isCollision() {
   return false
 }
 
-function scoreUpdate() {
+function scoreUpdateObs() {
   if (!obstacles[0].wasFlown && obstacles[0].x < sprite.x) {
     obstacles[0].wasFlown = true;
     obstacles[1].wasFlown = true;
     score += 10;
     scoreBox.textContent = score;
+    scoreAnimated.textContent = score;
+  }
+}
+
+function scoreUpdateTech() {
+  if (sprite.x + spriteImg.width > techInstance.x &&
+      sprite.y > techInstance.y && sprite.y < techInstance.y + techInstance.img.height &&
+      !techInstance.wasHit) {
+    techInstance.wasHit = true;
+    score += 50;
+    scoreBox.textContent = score;
+    scoreAnimated.textContent = score;
+    scoreAnimated.classList.add('animation');
   }
 }
 
@@ -183,6 +229,9 @@ function render() {
   ctx.drawImage(spriteImg, sprite.x, sprite.y);
   obstacles.forEach(obstacle =>
     ctx.drawImage(obstacle.img, obstacle.x, obstacle.y));
+
+  if (Object.entries(techInstance).length !== 0)
+    ctx.drawImage(techInstance.img, techInstance.x, techInstance.y, techInstance.img.width, techInstance.img.height);
     
   ctx.drawImage(foregroundImg, fg.x, fg.y);
 
@@ -209,21 +258,40 @@ function update() {
       obstacles.forEach(obstacle => obstacle.x--);
       if (obstacles[0].x < -100) obstacles.splice(0, 1);
 
-      scoreUpdate();
+      scoreUpdateObs();
     }
 
-    countDown--;
-    if (countDown < 0) {
-      countDown = 600;
+    if (Object.entries(techInstance).length !== 0) {
+      techInstance.x--;
+      if (techInstance.x + techInstance.img.width < 0) {
+        techInstance = {};
+        scoreAnimated.classList.remove('animation');
+      } else scoreUpdateTech();
+    }
+
+    obsCount--;
+    if (obsCount < 0) {
+      obsCount = obsGenerateFeq;
 
       obsRandomY = Math.floor(Math.random() * (obsOffsetMin - obsOffsetMax) + obsOffsetMax);
       if (obsRandomY > -650) {
-        randomImgIndex = Math.floor(Math.random() * 9 + 1);
+        // images with text have indexes from 1 to 10
+        randomImgIndex = Math.floor(Math.random() * (obstaclesImg.length - 2) + 1);
       } else {
+        // no text image index
         randomImgIndex = 0;
       }
       obstacles.push(new Obstacle(WIDTH, obsRandomY, obstaclesImg[randomImgIndex]))
       obstacles.push(new Obstacle(WIDTH, obsRandomY + obsImgHeight + gapHeight, obstaclesImg[0]))
+    }
+
+    techsCount--;
+    if (techsCount < 0) {
+      techsCount = techsGenerateFeq;
+
+      techsRandomY = Math.floor(Math.random() * (HEIGHT - 150));
+      randomImgIndex = Math.floor(Math.random() * (thechsImg.length - 1));
+      techInstance = new Thechnology(WIDTH + techsOffset, techsRandomY, thechsImg[randomImgIndex]);
     }
   }
 
@@ -251,10 +319,12 @@ function startGame() {
   sprite.x = WIDTH * 0.2;
   sprite.y = HEIGHT / 3;
   obstacles = [];
+  techInstance = {};
   fg.x = 0;
   fg.y = HEIGHT - foregroundImg.height;
   score = 0;
   scoreBox.textContent = '0';
+  scoreAnimated.textContent = '0';
 
   startCountDown();
 
