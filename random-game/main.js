@@ -226,13 +226,12 @@ function scoreUpdateTech() {
 function render() {
 
   ctx.drawImage(backgroundImg, bg.x, bg.y);
+  if (Object.entries(techInstance).length !== 0)
+    ctx.drawImage(techInstance.img, techInstance.x, techInstance.y, techInstance.img.width, techInstance.img.height);
   ctx.drawImage(spriteImg, sprite.x, sprite.y);
   obstacles.forEach(obstacle =>
     ctx.drawImage(obstacle.img, obstacle.x, obstacle.y));
-
-  if (Object.entries(techInstance).length !== 0)
-    ctx.drawImage(techInstance.img, techInstance.x, techInstance.y, techInstance.img.width, techInstance.img.height);
-    
+  
   ctx.drawImage(foregroundImg, fg.x, fg.y);
 
   stop = window.requestAnimationFrame(update);
