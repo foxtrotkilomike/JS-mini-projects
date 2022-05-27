@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&family=DotGothic16&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./assets/Thor.png" type="image/x-icon">
+  <link rel="stylesheet" href="./style.css">
+  <title>Flappy Dev</title>
+</head>
+
+<body>
+  <main class="wrapper">
+    <div class="rules">
+      <p>Welcome to Flappy Dev game!</p>
+      <p>Press <code>&#8593;</code> key or touch <code>&#x1F446;</code> screen to move your sprite up.<br>
+        Don't touch lava or obstacles!<br>
+        Catch different developer's skills to gain your score.</p>
+      <button class="button rules-button">Got it!</button>
+    </div>
+    <div class="canvas-container">
+      <canvas>
+        Flappy Dev game
+      </canvas>
+      <div class="score-box">Score:
+        <div class="score">0</div>
+        <div class="score score-animated">0</div>
+      </div>
+      <div class="score-box-last">Your score: <span class="your-score"></span></div>
+      <button class="button play-button">TRY AGAIN</button>
+    </div>
+
+
+    <section class="scoreboard">
+      <table id="scoretable">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <a href="https://github.com/foxtrotkilomike">
+        <img src="./assets/github-logo.svg" alt="github logo" class="gh-logo">
+      </a>
+      <p class="footer-credits">© 2022</p>
+      <a href="https://rs.school/js-stage0/">
+        <img src="./assets/rs_school_js.svg" alt="rolling scopes school logo" class="rsschool-logo">
+      </a>
+    </div>
+  </footer>
+  <script src="./main.js"></script>
+</body>
+
+</html>
