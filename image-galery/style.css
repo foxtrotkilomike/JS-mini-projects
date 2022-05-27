@@ -1,0 +1,315 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+body,
+html {
+  height: 100%;
+  line-height: 1;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #000;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background-image: linear-gradient(
+    0deg,
+    rgba(139, 34, 195, 0.9) 0%,
+    rgba(253, 174, 45, 0.85) 100%
+  );
+}
+
+header {
+  background-color: #ffffff52;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100px;
+  margin-left: -80px;
+  padding: 15px 0;
+  font-size: 36px;
+}
+
+@media (max-width: 970px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  .logo-title {
+    margin-left: 0;
+  }
+}
+
+.logo {
+  position: relative;
+  width: 70px;
+  height: 100%;
+}
+
+.logo img {
+  position: absolute;
+  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.title {
+  font-family: "Dancing Script", cursive;
+}
+
+@media (max-width: 730px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .logo {
+    width: 42px;
+  }
+
+  .logo img {
+    height: 60%;
+  }
+}
+
+@media (max-width: 552px) {
+  .logo {
+    display: none;
+  }
+
+  .logo-title {
+    max-width: 60%;
+  }
+
+  .search {
+    width: 40%;
+  }
+}
+
+.unsplash {
+  margin-top: 5px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  background-color: #eaeaea;
+  border-right: 5px solid rgb(160, 160, 160);
+  border-bottom: 5px solid rgb(160, 160, 160);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s linear, border 0.2s linear;
+}
+
+@media (max-width: 730px) {
+  .unsplash {
+    font-size: 16px;
+  }
+}
+
+.unsplash a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.unsplash img {
+  width: 30px;
+}
+
+.unsplash-title {
+  display: inline-block;
+  color: #000;
+}
+
+.unsplash:hover {
+  transform: translateY(6px);
+  border: 0;
+}
+
+.search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 35%;
+}
+
+@media (max-width: 970px) {
+  .search {
+    width: 25%;
+  }
+}
+
+@media (max-width: 552px) {
+  .search {
+    width: 40%;
+  }
+}
+
+.search-form {
+  height: 40%;
+  width: 100%;
+  max-width: 280px;
+  padding: 6px 18px;
+  padding-right: 0;
+  background-color: #fff;
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 20px;
+  transition: box-shadow, transform 0.3s ease-in;
+}
+
+.search-form:focus-within {
+  box-shadow: 0 5px 20px rgb(131, 131, 131);
+  transform: scale(1.1);
+}
+
+.search-input {
+  width: 87%;
+  height: 100%;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 870px) {
+  .search-input {
+    width: 80%;
+  }
+}
+
+.search-button {
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 630px) {
+  .search-button {
+    visibility: hidden;
+  }
+
+  .search-input {
+    width: 93%;
+  }
+}
+
+svg {
+  width: 15px;
+  transition: fill 0.3s ease-in-out;
+}
+
+svg:hover {
+  fill: #ffcb70;
+}
+
+main {
+  flex: 1 1 auto;
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+@media (max-width: 970px) {
+  main {
+    width: 95%;
+  }
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 32%;
+}
+
+.img-item {
+  width: 100%;
+}
+
+.img-item img {
+  width: 100%;
+  border-radius: 4px;
+  transition: opacity 0.2s ease-in;
+}
+
+.img-item img:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  height: 8vh;
+  margin: 0 auto;
+}
+
+@media (max-width: 970px) {
+  footer {
+    width: 95%;
+  }
+}
+
+.gh-logo {
+  width: 50px;
+}
+
+.rsschool-logo {
+  width: 100px;
+}
+
+.footer-credits {
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.footer-credits a {
+  font-size: 14px;
+  color: #ffcb70;
+}
+
+.small-text {
+  font-size: 14px;
+}
