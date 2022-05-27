@@ -1,0 +1,510 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+:root {
+  --color-gold: #bdae82;
+  --color-black: #000;
+  --font1: 60px;
+  --font2: 40px;
+}
+
+body,
+html {
+  height: 100%;
+  line-height: 1;
+  font-size: 20px;
+  color: var(--color-black);
+  scroll-behavior: smooth;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+body {
+  margin: 0 auto;
+  background-color: var(--color-black);
+  font-family: "Inter", sans-serif;
+  color: #fff;
+}
+
+.ibg {
+  position: relative;
+}
+
+.ibg img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ------------------------HEADER------------------------------ */
+.header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  min-height: 90px;
+}
+
+.header__container {
+  display: flex;
+  margin: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+  width: 50px;
+  height: 50px;
+  transition: filter 0.5s;
+}
+
+.header__logo img {
+  height: 100%;
+}
+
+.header__logo:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+  transition: filter 0.5s;
+}
+
+.header__menu-lang {
+  line-height: 2.5;
+}
+
+.header__menu {
+  display: inline-flex;
+}
+
+/* .menu__list {
+  display: flex;
+} */
+
+.menu__item {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.menu__item:last-child {
+  margin-right: 26px;
+}
+
+.menu__link {
+  color: inherit;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: color 0.5s;
+}
+
+.menu__link:hover {
+  color: var(--color-gold);
+  transition: color 0.5s;
+}
+
+.header__lang {
+  display: inline-flex;
+  width: 70px;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.header__lang a {
+  color: inherit;
+}
+.header__lang a[href="index.html"] {
+  color: var(--color-gold);
+}
+
+/* .header__lang-slash {
+  margin: 0 8px 0 9px;
+} */
+
+/* --------------HERO----------------- */
+.hero {
+  position: relative;
+  margin: 0 -20px;
+  padding-left: 80px;
+  padding-top: 250px;
+  width: 1440px;
+  height: 910px;
+}
+.hero__body {
+  position: relative;
+  z-index: 1;
+  width: 500px;
+  height: 330px;
+  line-height: 200%;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-family: Merriweather;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 200%;
+}
+.hero__caption {
+  margin-bottom: 25px;
+  width: 470px;
+}
+.button {
+  width: 220px;
+  height: 55px;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  transition: color 0.3s ease-in;
+}
+
+.button:hover {
+  color: #fff;
+  transition: color 0.3s ease-out;
+}
+
+.button-filled {
+  border: 0;
+  background-color: var(--color-gold);
+}
+
+.hero__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ----------------SKILLS---------------- */
+.section__head {
+  position: relative;
+  height: 240px;
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+
+.gradient-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  background-image: linear-gradient(
+    to top,
+    var(--color-black) 39px,
+    var(--color-gold) 39px,
+    var(--color-gold) 41px,
+    var(--color-black) 41px
+  );
+}
+
+.section__heading {
+  position: relative;
+  margin: 0 auto;
+  font-family: Merriweather;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 80px;
+  text-align: center;
+  color: var(--color-gold);
+  background-color: var(--color-black);
+}
+
+.skills__heading {
+  width: 152px;
+}
+
+.section__content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.skills__card {
+  width: 320px;
+  height: 240px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.skills-card__img {
+  margin-bottom: 50px;
+}
+
+.skills-card__heading {
+  margin-bottom: 20px;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+.skills-card__caption {
+  font-size: 18px;
+  line-height: 36px;
+}
+
+/* --------------PORTFOLIO----------------- */
+
+.portfolio__heading {
+  width: 220px;
+}
+
+.potfolio__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  height: 115px;
+  padding-bottom: 60px;
+}
+
+.button-border {
+  color: var(--color-gold);
+  border: 2px solid var(--color-gold);
+  background-color: transparent;
+}
+
+.portfolio__photo {
+  width: 450px;
+}
+
+.portfolio__content {
+  gap: 25px;
+}
+
+/* -----------------VIDEO-------------------- */
+
+.video__heading {
+  width: 154px;
+}
+
+.video-player {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 705px;
+}
+
+.button__play {
+  position: absolute;
+  z-index: 2;
+  height: 130px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button__play img {
+  transition: filter 0.5s ease-in;
+}
+
+.button__play img:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+  transition: filter 0.5s ease-out;
+}
+
+/* ----------------PRICE---------------------- */
+.price {
+  padding-bottom: 100px;
+}
+
+.price__heading {
+  width: 142px;
+}
+
+.price__card {
+  width: 450px;
+  height: 505px;
+  padding: 43px;
+  border: 2px solid var(--color-gold);
+  line-height: 200%;
+  text-align: center;
+}
+
+.price__card > :nth-child(-n + 2) {
+  margin-bottom: 20px;
+}
+
+.price__category {
+  font-family: Merriweather, serif;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 200%;
+}
+
+.price__paycheck {
+  font-family: Merriweather, serif;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 200%;
+  color: var(--color-gold);
+}
+
+.price__caption {
+  margin-bottom: 40px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 200%;
+}
+
+/* ------------------CONTACT----------------- */
+.contact {
+  position: relative;
+  margin: 0 -20px;
+  height: 700px;
+}
+
+.contact__body {
+  position: absolute;
+  top: 60px;
+  left: 970px;
+  z-index: 2;
+}
+
+.contact__heading {
+  padding-bottom: 40px;
+  font-family: Merriweather;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 200%;
+  color: var(--color-gold);
+}
+
+.contact__form {
+  width: 450px;
+}
+
+.form p > * {
+  width: 100%;
+}
+
+.form > :nth-child(-n + 2) {
+  padding-bottom: 20px;
+}
+
+.form p:last-of-type {
+  padding-bottom: 30px;
+}
+
+.contact__input {
+  height: 50px;
+  padding-left: 20px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 200%;
+  color: var(--color-gold);
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--color-gold);
+  transition: 180ms box-shadow ease-in-out;
+}
+
+.contact__input:focus {
+  max-width: 448px;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(210, 197, 130, 0.5);
+  outline: 3px solid transparent;
+}
+
+.contact__field textarea {
+  height: 100px;
+  resize: none;
+}
+
+::placeholder {
+  color: var(--color-gold);
+}
+
+.contact__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* -----------------FOOTER--------------------- */
+.footer {
+  padding: 50px 0;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer__item * {
+  display: inline-block;
+  color: inherit;
+  line-height: 250%;
+  transition: color 0.5s;
+}
+
+.footer__item a:hover {
+  color: var(--color-gold);
+  transition: color 0.5s;
+}
+
+.footer__copyright > *:not(:last-child) {
+  margin-right: 17px;
+}
+
+.sm-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 188px;
+  padding: 9px 0;
+}
+
+.sm-item {
+  width: 32px;
+  height: 32px;
+  transition: filter 0.5s;
+}
+
+.sm-item a img {
+  position: relative;
+  display: block;
+  margin: auto;
+  width: 32px;
+  height: 32px;
+}
+
+.sm-item:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+  transition: filter 0.5s;
+}
